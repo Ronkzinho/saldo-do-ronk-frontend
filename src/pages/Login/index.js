@@ -7,7 +7,7 @@ export default function Login({ history }){
 
     async function handleSubmit(event){
         event.preventDefault()
-        var res = await api.get("/users", { headers: { identifier: indentifier, password: password }})
+        var res = await api.get("/users", { headers: { indentifier: indentifier, password: password }})
         if(res.data.error){
             return alert(res.data.error)
         }
