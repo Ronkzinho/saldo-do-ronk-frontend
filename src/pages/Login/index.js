@@ -7,7 +7,9 @@ export default function Login({ history }){
 
     async function handleSubmit(event){
         event.preventDefault()
-        if(identifier === "" || password === "")
+        if(identifier === "" || password === ""){
+            return alert("Preencha todos os campos")
+        }
         var res = await api.get("/users", { headers: { identifier: identifier, password: password }})
         if(res.data.error){
             return alert(res.data.error)
