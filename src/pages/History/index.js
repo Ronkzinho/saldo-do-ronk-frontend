@@ -20,7 +20,7 @@ export default function History({ history }){
     }
     return(
         <>
-            <h1>Seu historico</h1>
+            <h1>Seu histórico</h1>
             <ul>
             {(userHistory.length > 0) ? userHistory.map(hist => (
             <li key={hist._id}>
