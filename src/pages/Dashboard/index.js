@@ -36,11 +36,12 @@ export default function Dashboard({ history }){
         setUserSaldo(res.data.saldo)
     }
     return(
-        <form onSubmit={validate}>
-                <button onClick={() => {
+        <>
+        <button onClick={() => {
                     localStorage.removeItem("user")
                     history.push("/")
                 }}>Logout</button>
+        <form onSubmit={validate}>
                 <h1 id="h2">Seu saldo:</h1>
                 <h2 id="saldo">{parseFloat(userSaldo).toFixed(2).replace(".", ",")}</h2>
                 <h3>Quanto?</h3>
@@ -50,5 +51,6 @@ export default function Dashboard({ history }){
                 <button onClick={resetar}>Resetar</button>
                 <button onClick={() => history.push("/history")}>Ir para o histórico</button>
         </form>
+        </>
     )
 } 
