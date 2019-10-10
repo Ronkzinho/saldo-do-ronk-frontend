@@ -22,7 +22,7 @@ export default function Login({ history }){
             <input placeholder="Insira sua senha" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
             <br />
             <button type="submit">Login</button>
-            <p>Nenhuma conta?<a href="/login"> Registre-se</a></p>
+            <p>Nenhuma conta?<a href="/register"> Registre-se</a></p>
         </form>
     )
 }
