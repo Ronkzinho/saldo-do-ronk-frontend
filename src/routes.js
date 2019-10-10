@@ -4,6 +4,7 @@ import Home from "./pages/Home"
 import Login from "./pages/Login"
 import Register from "./pages/Register"
 import Dashboard from "./pages/Dashboard"
+import History from "./pages/History"
 
 export default function Routes(){
     return(
@@ -13,6 +14,7 @@ export default function Routes(){
             <Route exact path="/login" component={ Login } />
             <Route exact path="/register" component={ Register } />
             <Route exact path="/dashboard" component={ Dashboard } /> 
+            <Route exact path="/history" component={ History }/>
         </Switch>
     </BrowserRouter>
     )

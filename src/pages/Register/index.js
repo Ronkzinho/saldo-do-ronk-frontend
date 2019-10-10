@@ -9,6 +9,9 @@ export default function Register({ history }){
 
     async function handleSubmit(event){
         event.preventDefault()
+        if(!username || username === ""|| !email || email === "" || !password || password === ""){
+            return alert("Preencha todos os campos")
+        }
         var res = await api.post("/users", { username: username, email: email, password: password })
         if(res.data.error){
             return alert(res.data.error)

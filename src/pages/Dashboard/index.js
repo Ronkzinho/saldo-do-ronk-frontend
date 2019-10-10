@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react"
+import moment from 'moment/min/moment-with-locales'
 import api from "../../services/api"
+moment.locale("pt-br")
 
-export default function Dashboard(){
+export default function Dashboard({ history }){
     var [userSaldo, setUserSaldo] = useState('')
     var [saldo, setSaldo] = useState('')
     useEffect(() => {
@@ -16,7 +18,14 @@ export default function Dashboard(){
         if(saldo === "" || isNaN(parseInt(saldo.replace(",", ".")))){
             return alert("Preencha os campos corretamente")
         }
-        var res = await api.put("/dashboard", { _id: localStorage.getItem("user"), saldo: saldo})
+        var history = prompt("Descrição")
+        if(history === null){
+            return
+        }
+        if(history === ""){
+            history = "Nenhuma descrição"
+        }
+        var res = await api.put("/dashboard", { _id: localStorage.getItem("user"), saldo: saldo, history: history, moment: moment().format('L') + " ás " +  moment().format('LTS')})
         setUserSaldo(res.data.saldo)
     }
     async function resetar(){
@@ -35,6 +44,7 @@ export default function Dashboard(){
                 <h4>Pronto, agora para terminar, é so clicar em ir</h4>
                 <button id="butao" type="submit">Ir</button>
                 <button onClick={resetar}>Resetar</button>
+                <button onClick={() => history.push("/history")}>Ir para o histórico</button>
         </form>
     )
 } 
