@@ -37,6 +37,10 @@ export default function Dashboard({ history }){
     }
     return(
         <form onSubmit={validate}>
+                <button onClick={() => {
+                    localStorage.removeItem("user")
+                    history.push("/")
+                }}>Logout</button>
                 <h1 id="h2">Seu saldo:</h1>
                 <h2 id="saldo">{parseFloat(userSaldo).toFixed(2).replace(".", ",")}</h2>
                 <h3>Quanto?</h3>
