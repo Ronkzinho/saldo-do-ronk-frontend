@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from "react"
 import moment from 'moment/min/moment-with-locales'
+import Loading from "../../components/Loading"
 import api from "../../services/api"
 moment.locale("pt-br")
 
 export default function Dashboard({ history }){
     var [userSaldo, setUserSaldo] = useState('')
     var [saldo, setSaldo] = useState('')
+    var [loaded, setLoaded] = useState(false)
     useEffect(() => {
         async function load(){
             var res = await api.get("/dashboard", { headers: { _id: localStorage.getItem("user") }})
+            setLoaded(true)
             setUserSaldo(res.data.saldo)
         }
         load()
@@ -37,10 +40,12 @@ export default function Dashboard({ history }){
     }
     return(
         <>
+        {(loaded === true) ?
+<> 
         <button onClick={() => {
-                    localStorage.removeItem("user")
-                    history.push("/")
-                }}>Logout</button>
+        localStorage.removeItem("user")
+        history.push("/")
+        }}>Logout</button>
         <form onSubmit={validate}>
                 <h1 id="h2">Seu saldo:</h1>
                 <h2 id="saldo">{parseFloat(userSaldo).toFixed(2).replace(".", ",")}</h2>
@@ -51,6 +56,8 @@ export default function Dashboard({ history }){
                 <button onClick={resetar}>Resetar</button>
                 <button onClick={() => history.push("/history")}>Ir para o histórico</button>
         </form>
+</>
+        : <Loading />}
         </>
     )
 } 
