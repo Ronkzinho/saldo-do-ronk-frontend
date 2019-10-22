@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import Loading from "../../components/Loading"
 import api from "../../services/api"
 
@@ -6,6 +6,15 @@ export default function Login({ history }){
     var [identifier, setIdentifier] = useState('')
     var [password, setPassword] = useState('')
     var [logado, setLogado] = useState(false)
+
+    useEffect(() => {
+        async function load(){
+            if(localStorage.getItem("user")){
+                return history.push("/home")
+            }
+        }
+        load()
+    }, [history])
     async function handleSubmit(event){
         event.preventDefault()
         if(identifier === "" || password === ""){

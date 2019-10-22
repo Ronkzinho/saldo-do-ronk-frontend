@@ -10,12 +10,15 @@ export default function Dashboard({ history }){
     var [loaded, setLoaded] = useState(false)
     useEffect(() => {
         async function load(){
+            if(!localStorage.getItem("user")){
+                return history.push("/home")
+            }
             var res = await api.get("/dashboard", { headers: { _id: localStorage.getItem("user") }})
             setLoaded(true)
             setUserSaldo(res.data.saldo)
         }
         load()
-    }, [])
+    }, [history])
     async function validate(event){
         event.preventDefault()
         if(saldo === "" || isNaN(parseInt(saldo.replace(",", ".")))){
