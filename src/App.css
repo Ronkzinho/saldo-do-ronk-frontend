@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+input:focus, textarea:focus, select:focus, img:focus{
+    outline: none;
+}
+
+body{
+    font-family: 'Roboto';
+    outline: none;
+}
+button{
+    cursor: pointer;
+}
+.light{
+    background-color: #fff;
+    color: #000;
+}
+.dark{
+    background-color: #000;
+    color: #fff;
+}
+.dark .theme-icon, .dark button, .dark input{
+    -webkit-filter: invert(1);
+    filter: invert(1);
+    font-family: 'Roboto';
+    font-weight: bold;
+}
