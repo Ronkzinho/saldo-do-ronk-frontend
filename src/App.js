@@ -29,7 +29,7 @@ function App() {
   } 
   return (
     <div id="container" className="container">
-      <input className="theme-icon" type="image" alt="theme" onClick={() => { changeTheme() }} style={{ position: "absolute", right: "0", top: 1 }} width={36} height={36} src={(theme === "light") ? moon : sun }/>
+      <input className="theme-icon" type="image" alt="theme-icon" onClick={() => { changeTheme() }} style={{ position: "absolute", right: "0", top: 1 }} width={36} height={36} src={(theme === "light") ? moon : sun }/>
       <Routes />
     </div>
   );
